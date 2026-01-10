@@ -38,7 +38,11 @@ app.layout = html.Div(
                 "color": "white"
             },
             children=[
-                html.H1("Pink Morsel Sales Dashboard", style={"margin": "0"}),
+                html.H1(
+                    "Pink Morsel Sales Dashboard",
+                    id="app-header",   # 👈 REQUIRED FOR TESTING
+                    style={"margin": "0"}
+                ),
                 html.P(
                     "Explore regional sales trends before and after the January 2021 price increase",
                     style={"marginTop": "8px", "opacity": "0.9"}
@@ -46,7 +50,7 @@ app.layout = html.Div(
             ]
         ),
 
-        # Main card container
+        # Main content card
         html.Div(
             style={
                 "maxWidth": "1000px",
@@ -122,28 +126,20 @@ def update_chart(selected_region):
         }
     )
 
-    fig.update_traces(
-        line=dict(width=3, color="#1f77b4")
-    )
-
+    fig.update_traces(line=dict(width=3))
     fig.update_layout(
         title={
             "text": "Pink Morsel Sales Over Time",
-            "x": 0.5,
-            "font": {"size": 18}
+            "x": 0.5
         },
-        plot_bgcolor="#ffffff",
-        paper_bgcolor="#ffffff",
-        margin=dict(l=40, r=40, t=60, b=40),
-        xaxis=dict(showgrid=True, gridcolor="#e5e5e5"),
-        yaxis=dict(showgrid=True, gridcolor="#e5e5e5"),
+        plot_bgcolor="white",
+        paper_bgcolor="white"
     )
 
     return fig
 
-
 # =======================
-# Run server (CRITICAL)
+# Run server
 # =======================
 if __name__ == "__main__":
     app.run(debug=True)
